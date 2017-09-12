@@ -1,5 +1,5 @@
 # tproto
-[![Build Status](https://travis-ci.org/wy-z/tproto.svg?branch=master)](https://travis-ci.org/wy-z/tproto) [![GoDoc](https://godoc.org/github.com/wy-z/tproto?status.svg)](http://godoc.org/github.com/wy-z/tproto)
+[![Build Status](https://travis-ci.org/wy-z/tproto.svg?branch=master)](https://travis-ci.org/wy-z/tproto) [![GoDoc](https://godoc.org/github.com/wy-z/tproto?status.svg)](http://godoc.org/github.com/wy-z/tproto) [![Go Report Card](https://goreportcard.com/badge/github.com/wy-z/tproto)](https://goreportcard.com/report/github.com/wy-z/tproto)
 
 Parse golang data structure into proto3.
 
