@@ -73,11 +73,14 @@ func (t *Parser) Reset() {
 	return
 }
 
+// ProtoSyntax defines proto synatax
+const ProtoSyntax = "proto3"
+
 // RenderProto renders proto messages
 func (t *Parser) RenderProto(protoPkg string) (buf *bytes.Buffer) {
 	p := new(proto.Proto)
 	p.Elements = append(p.Elements, &proto.Syntax{
-		Value: "3",
+		Value: ProtoSyntax,
 	})
 	p.Elements = append(p.Elements, &proto.Package{
 		Name: protoPkg,

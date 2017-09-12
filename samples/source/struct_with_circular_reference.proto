@@ -1,4 +1,4 @@
-syntax = "3";
+syntax = "proto3";
 
 package samples;
 
