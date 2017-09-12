@@ -1,0 +1,6 @@
+syntax = "3";
+
+package samples;
+
+message StructWithNoExportField {}
+

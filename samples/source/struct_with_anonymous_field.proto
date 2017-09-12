@@ -1,0 +1,22 @@
+syntax = "3";
+
+package samples;
+
+message StructWithAnonymousField {
+  repeated StructWithAnonymousField_AnonymousArray_Elt anonymous_array = 1;
+  map <string,StructWithAnonymousField_AnonymousMap_Elt> anonymous_map = 2;
+  StructWithAnonymousField_AnonymousStruct anonymous_struct = 3;
+}
+message StructWithAnonymousField_AnonymousArray_Elt {
+    bool bool_field   = 1;
+  string string_field = 2;
+}
+message StructWithAnonymousField_AnonymousMap_Elt {
+    bool bool_field   = 1;
+  string string_field = 2;
+}
+message StructWithAnonymousField_AnonymousStruct {
+    bool bool_field   = 1;
+  string string_field = 2;
+}
+

@@ -1,0 +1,8 @@
+syntax = "3";
+
+package samples;
+
+message StructWithCircularReference {
+  StructWithCircularReference circular_reference = 1;
+}
+
