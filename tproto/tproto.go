@@ -28,9 +28,25 @@ var jsonProtoTypeMap = map[string]string{
 	"string:date-time": "string",
 }
 
+// ParserOptions defines tproto parser options
+type ParserOptions struct {
+	tspec.ParserOptions
+}
+
+const tspecRefPrefix = "#/"
+
+// DefaultParserOptions defines default tproto parser options
+var DefaultParserOptions = ParserOptions{
+	ParserOptions: tspec.ParserOptions{
+		IgnoreJSONTag: false,
+		RefPrefix:     tspecRefPrefix,
+	},
+}
+
 // Parser defines tproto parser
 type Parser struct {
 	messages map[string]*proto.Message
+	opts     ParserOptions
 	lock     sync.Mutex
 }
 
@@ -38,7 +54,16 @@ type Parser struct {
 func NewParser() (parser *Parser) {
 	parser = new(Parser)
 	parser.messages = make(map[string]*proto.Message)
+	parser.opts = DefaultParserOptions
 	return
+}
+
+// Options gets or sets parser options
+func (t *Parser) Options(opts ...ParserOptions) ParserOptions {
+	if len(opts) != 0 {
+		t.opts = opts[0]
+	}
+	return t.opts
 }
 
 // Messages returns all messages
@@ -192,7 +217,7 @@ func (t *Parser) parseDefinition(def *spec.Schema) (message *proto.Message, err 
 
 // Parse parses golang type expr
 func (t *Parser) Parse(pkgPath, typeExpr string) (message *proto.Message, err error) {
-	def, defs, err := parseTypeExpr(pkgPath, typeExpr)
+	def, defs, err := t.parseTypeExpr(pkgPath, typeExpr)
 	if err != nil {
 		err = errors.WithStack(err)
 		return
@@ -209,11 +234,10 @@ func (t *Parser) Parse(pkgPath, typeExpr string) (message *proto.Message, err er
 	return
 }
 
-const tspecRefPrefix = "#/"
-
-func parseTypeExpr(pkgPath, typeExpr string) (def *spec.Schema, defs spec.Definitions, err error) {
+func (t *Parser) parseTypeExpr(pkgPath, typeExpr string) (def *spec.Schema, defs spec.Definitions, err error) {
 	parser := tspec.NewParser()
-	parser.RefPrefix(tspecRefPrefix)
+	parser.Options(t.opts.ParserOptions)
+
 	pkg, err := parser.Import(pkgPath)
 	if err != nil {
 		err = errors.WithStack(err)

@@ -9,10 +9,11 @@ import (
 )
 
 type cliOpts struct {
-	PkgURL    string
-	TypeExpr  string
-	ProtoPkg  string
-	ProtoFile string
+	PkgURL        string
+	TypeExpr      string
+	ProtoPkg      string
+	ProtoFile     string
+	IgnoreJSONTag bool
 }
 
 //Run runs tproto
@@ -44,6 +45,11 @@ func Run(version string) {
 			Usage:       "load messages from proto file `PF`",
 			Destination: &opts.ProtoFile,
 		},
+		cli.BoolFlag{
+			Name:        "ignore-json-tag",
+			Usage:       "ignore json tag",
+			Destination: &opts.IgnoreJSONTag,
+		},
 	}
 	app.Action = func(c *cli.Context) (err error) {
 		if opts.PkgURL == "" || opts.TypeExpr == "" || opts.ProtoPkg == "" {
@@ -52,6 +58,10 @@ func Run(version string) {
 		}
 
 		parser := tproto.NewParser()
+		parserOpts := tproto.DefaultParserOptions
+		parserOpts.IgnoreJSONTag = opts.IgnoreJSONTag
+		parser.Options(parserOpts)
+
 		if opts.ProtoFile != "" {
 			err = parser.LoadProtoFile(opts.ProtoFile)
 			if err != nil {
