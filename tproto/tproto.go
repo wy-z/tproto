@@ -10,6 +10,7 @@ import (
 	"github.com/emicklei/proto"
 	"github.com/go-openapi/spec"
 	"github.com/pkg/errors"
+	log "github.com/sirupsen/logrus"
 	"github.com/wy-z/tspec/tspec"
 )
 
@@ -144,14 +145,8 @@ func (t *Parser) parseDefinitionField(title string, field *spec.Schema, sequence
 	f := new(proto.Field)
 	f.Name = title
 	f.Sequence = sequence
-	if typeStr == protoEmptyType {
-		if _, ok := t.messages[protoEmptyMessageName]; !ok {
-			t.messages[protoEmptyMessageName] = protoEmptyMessage
-		}
-		f.Type = protoEmptyMessageName
-		fieldProto = &proto.NormalField{
-			Field: f,
-		}
+	if typeStr == emptyType {
+		log.Warnf("ignored unsupported type %s", title)
 		return
 	}
 
@@ -205,7 +200,9 @@ func (t *Parser) parseDefinition(def *spec.Schema) (message *proto.Message, err 
 				err = errors.WithStack(e)
 				return
 			}
-			message.Elements = append(message.Elements, f)
+			if f != nil {
+				message.Elements = append(message.Elements, f)
+			}
 		}
 	default:
 		err = errors.Errorf("unsupported type %s", typeStr)
@@ -269,17 +266,12 @@ func ParseProtoFile(path string) (p *proto.Proto, err error) {
 }
 
 const (
-	protoEmptyType        = "empty"
-	protoEmptyMessageName = "Empty"
+	emptyType = "empty"
 )
-
-var protoEmptyMessage = &proto.Message{
-	Name: protoEmptyMessageName,
-}
 
 func schemaTypeStr(schema *spec.Schema) string {
 	if len(schema.Type) == 0 && schema.Ref.String() == "" {
-		return protoEmptyType
+		return emptyType
 	}
 
 	l := make([]string, 0, 2)
