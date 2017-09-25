@@ -3,30 +3,30 @@ syntax = "proto3";
 package samples;
 
 message BasicTypes {
-    bool bool_field       =  1;
-   bytes byte_field       =  2;
-  double complex128_field =  3;
-   float complex64_field  =  4;
-   float float32_field    =  5;
-  double float64_field    =  6;
-   int32 int16_field      =  7;
-   int32 int32_field      =  8;
-   int64 int64_field      =  9;
-   int32 int8_field       = 10;
-   int64 int_field        = 11;
-   bytes rune_field       = 12;
-  string string_field     = 13;
-  string time_field       = 14;
-   int32 uint16_field     = 15;
-   int32 uint32_field     = 16;
-   int64 uint64_field     = 17;
-   int32 uint8_field      = 18;
-   int64 uint_field       = 19;
-   int64 uintptr_field    = 20;
+    bool BoolField       =  1;
+   bytes ByteField       =  2;
+  double Complex128Field =  3;
+   float Complex64Field  =  4;
+   float Float32Field    =  5;
+  double Float64Field    =  6;
+   int32 Int16Field      =  7;
+   int32 Int32Field      =  8;
+   int64 Int64Field      =  9;
+   int32 Int8Field       = 10;
+   int64 IntField        = 11;
+   bytes RuneField       = 12;
+  string StringField     = 13;
+  string TimeField       = 14;
+   int32 Uint16Field     = 15;
+   int32 Uint32Field     = 16;
+   int64 Uint64Field     = 17;
+   int32 Uint8Field      = 18;
+   int64 UintField       = 19;
+   int64 UintptrField    = 20;
 }
 message NormalStruct {
-  BasicTypes basic_types = 1;
-      string create      = 2;
-       int64 number      = 3;
+  BasicTypes BasicTypes = 1;
+      string Create     = 2;
+       int64 Number     = 3;
 }
 

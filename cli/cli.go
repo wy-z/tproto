@@ -13,7 +13,7 @@ type cliOpts struct {
 	TypeExpr      string
 	ProtoPkg      string
 	ProtoFile     string
-	IgnoreJSONTag bool
+	IgnoreJSONTag *bool
 }
 
 //Run runs tproto
@@ -47,8 +47,8 @@ func Run(version string) {
 		},
 		cli.BoolFlag{
 			Name:        "ignore-json-tag",
-			Usage:       "ignore json tag",
-			Destination: &opts.IgnoreJSONTag,
+			Usage:       "ignore json tag (default: true)",
+			Destination: opts.IgnoreJSONTag,
 		},
 	}
 	app.Action = func(c *cli.Context) (err error) {
@@ -59,7 +59,11 @@ func Run(version string) {
 
 		parser := tproto.NewParser()
 		parserOpts := tproto.DefaultParserOptions
-		parserOpts.IgnoreJSONTag = opts.IgnoreJSONTag
+		if opts.IgnoreJSONTag != nil {
+			parserOpts.IgnoreJSONTag = *opts.IgnoreJSONTag
+		} else {
+			parserOpts.IgnoreJSONTag = true
+		}
 		parser.Options(parserOpts)
 
 		if opts.ProtoFile != "" {

@@ -21,6 +21,9 @@ type TProtoTestSuite struct {
 
 func (s *TProtoTestSuite) SetupTest() {
 	s.parser = tproto.NewParser()
+	parserOpts := tproto.DefaultParserOptions
+	parserOpts.IgnoreJSONTag = true
+	s.parser.Options(parserOpts)
 	s.pkg = "github.com/wy-z/tproto/samples"
 }
 

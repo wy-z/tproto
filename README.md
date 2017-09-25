@@ -31,6 +31,7 @@ GLOBAL OPTIONS:
    --expression EXPR, --expr EXPR  (required) type expression EXPR
    --proto-package PP, --pp PP     (required) proto package PP
    --proto-file PF, --pf PF        load messages from proto file PF
+   --ignore-json-tag               ignore json tag (default: true)
    --help, -h                      show help
    --version, -v                   print the version
 ```
