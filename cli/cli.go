@@ -3,17 +3,18 @@ package cli
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/urfave/cli"
 	"github.com/wy-z/tproto/tproto"
 )
 
 type cliOpts struct {
-	PkgURL        string
-	TypeExpr      string
-	ProtoPkg      string
-	ProtoFile     string
-	IgnoreJSONTag *bool
+	PkgPath   string
+	TypeExprs string
+	ProtoPkg  string
+	ProtoFile string
+	JSONTag   bool
 }
 
 //Run runs tproto
@@ -26,14 +27,15 @@ func Run(version string) {
 	opts := new(cliOpts)
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
-			Name:        "package, pkg",
-			Usage:       "(required) package url `PKG`",
-			Destination: &opts.PkgURL,
+			Name:        "package, p",
+			Usage:       "package path `PKG`",
+			Value:       ".",
+			Destination: &opts.PkgPath,
 		},
 		cli.StringFlag{
-			Name:        "expression, expr",
-			Usage:       "(required) type expression `EXPR`",
-			Destination: &opts.TypeExpr,
+			Name:        "expressions, exprs",
+			Usage:       "(required) type expressions, seperated by ',', `EXPRS`",
+			Destination: &opts.TypeExprs,
 		},
 		cli.StringFlag{
 			Name:        "proto-package, pp",
@@ -46,24 +48,23 @@ func Run(version string) {
 			Destination: &opts.ProtoFile,
 		},
 		cli.BoolFlag{
-			Name:        "ignore-json-tag",
-			Usage:       "ignore json tag (default: true)",
-			Destination: opts.IgnoreJSONTag,
+			Name:        "json-tag, jt",
+			Usage:       "don't ignore json tag",
+			Destination: &opts.JSONTag,
 		},
 	}
 	app.Action = func(c *cli.Context) (err error) {
-		if opts.PkgURL == "" || opts.TypeExpr == "" || opts.ProtoPkg == "" {
+		if c.NArg() > 0 {
+			opts.TypeExprs = strings.Join(c.Args(), ",")
+		}
+		if opts.TypeExprs == "" || opts.ProtoPkg == "" {
 			cli.ShowAppHelp(c)
 			return
 		}
 
 		parser := tproto.NewParser()
 		parserOpts := tproto.DefaultParserOptions
-		if opts.IgnoreJSONTag != nil {
-			parserOpts.IgnoreJSONTag = *opts.IgnoreJSONTag
-		} else {
-			parserOpts.IgnoreJSONTag = true
-		}
+		parserOpts.IgnoreJSONTag = !opts.JSONTag
 		parser.Options(parserOpts)
 
 		if opts.ProtoFile != "" {
@@ -74,12 +75,17 @@ func Run(version string) {
 				return
 			}
 		}
-		_, err = parser.Parse(opts.PkgURL, opts.TypeExpr)
-		if err != nil {
-			msg := fmt.Sprintf("failed to parse type expr %s: %+v", opts.TypeExpr, err)
-			err = cli.NewExitError(msg, 1)
-			return
+
+		for _, expr := range strings.Split(opts.TypeExprs, ",") {
+			expr = strings.TrimSpace(expr)
+			_, err = parser.Parse(opts.PkgPath, expr)
+			if err != nil {
+				msg := fmt.Sprintf("failed to parse type expr %s: %s", expr, err)
+				err = cli.NewExitError(msg, 1)
+				return
+			}
 		}
+
 		fmt.Println(parser.RenderProto(opts.ProtoPkg).String())
 		return
 	}
