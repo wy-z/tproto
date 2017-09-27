@@ -21,24 +21,26 @@ USAGE:
    tproto [global options] command [command options] [arguments...]
 
 VERSION:
-   1.0.0
+   1.0.1
 
 COMMANDS:
      help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --package PKG, --pkg PKG        (required) package url PKG
-   --expression EXPR, --expr EXPR  (required) type expression EXPR
-   --proto-package PP, --pp PP     (required) proto package PP
-   --proto-file PF, --pf PF        load messages from proto file PF
-   --ignore-json-tag               ignore json tag (default: true)
-   --help, -h                      show help
-   --version, -v                   print the version
+   --package PKG, -p PKG               package path PKG (default: ".")
+   --expressions EXPRS, --exprs EXPRS  (required) type expressions, seperated by ',', EXPRS
+   --proto-package PP, --pp PP         (required) proto package PP
+   --proto-file PF, --pf PF            load messages from proto file PF
+   --json-tag, --jt                    don't ignore json tag
+   --help, -h                          show help
+   --version, -v                       print the version
 ```
 
 ## QuickStart
 
-`tproto -pkg github.com/wy-z/tproto/samples -expr BasicTypes -pp samples`
+`tproto -p github.com/wy-z/tproto/samples -exprs BasicTypes,NormalStruct -pp samples`
+Or
+`tproto -p github.com/wy-z/tproto/samples -pp samples BasicTypes NormalStruct`
 
 ## Samples
 
