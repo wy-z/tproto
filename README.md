@@ -27,13 +27,14 @@ COMMANDS:
      help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --package PKG, -p PKG               package path PKG (default: ".")
-   --expressions EXPRS, --exprs EXPRS  (required) type expressions, seperated by ',', EXPRS
-   --proto-package PP, --pp PP         (required) proto package PP
-   --proto-file PF, --pf PF            load messages from proto file PF
-   --json-tag, --jt                    don't ignore json tag
-   --help, -h                          show help
-   --version, -v                       print the version
+   --package PKG, -p PKG                package path PKG (default: ".")
+   --expressions EXPRS, --exprs EXPRS   (any-of required) type expressions, seperated by ',' EXPRS
+   --decorator DECORATOR, -d DECORATOR  (any-of required) parse package with decorator DECORATOR
+   --proto-package PP, --pp PP          (required) proto package PP
+   --proto-file PF, --pf PF             load messages from proto file PF
+   --json-tag, --jt                     don't ignore json tag
+   --help, -h                           show help
+   --version, -v                        print the version
 ```
 
 ## QuickStart
