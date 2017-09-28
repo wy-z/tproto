@@ -7,6 +7,7 @@ import (
 
 	"github.com/urfave/cli"
 	"github.com/wy-z/tproto/tproto"
+	"github.com/wy-z/tspec/tspec"
 )
 
 type cliOpts struct {
@@ -15,6 +16,7 @@ type cliOpts struct {
 	ProtoPkg  string
 	ProtoFile string
 	JSONTag   bool
+	Decorator string
 }
 
 //Run runs tproto
@@ -34,8 +36,13 @@ func Run(version string) {
 		},
 		cli.StringFlag{
 			Name:        "expressions, exprs",
-			Usage:       "(required) type expressions, seperated by ',', `EXPRS`",
+			Usage:       "(any-of required) type expressions, seperated by ',' `EXPRS`",
 			Destination: &opts.TypeExprs,
+		},
+		cli.StringFlag{
+			Name:        "decorator, d",
+			Usage:       "(any-of required) parse package with decorator `DECORATOR`",
+			Destination: &opts.Decorator,
 		},
 		cli.StringFlag{
 			Name:        "proto-package, pp",
@@ -57,7 +64,7 @@ func Run(version string) {
 		if c.NArg() > 0 {
 			opts.TypeExprs = strings.Join(c.Args(), ",")
 		}
-		if opts.TypeExprs == "" || opts.ProtoPkg == "" {
+		if opts.ProtoPkg == "" || (opts.TypeExprs == "" && opts.Decorator == "") {
 			cli.ShowAppHelp(c)
 			return
 		}
@@ -76,8 +83,33 @@ func Run(version string) {
 			}
 		}
 
+		exprs := make([]string, 0, 2)
 		for _, expr := range strings.Split(opts.TypeExprs, ",") {
 			expr = strings.TrimSpace(expr)
+			if expr == "" {
+				continue
+			}
+			exprs = append(exprs, expr)
+		}
+		if opts.Decorator != "" {
+			pkg, e := tspec.NewParser().Import(opts.PkgPath)
+			if e != nil {
+				msg := fmt.Sprintf("failed to import pkg '%s': %s", opts.PkgPath, e)
+				err = cli.NewExitError(msg, 1)
+				return
+			}
+			objs, e := tspec.ParsePkgWithDecorator(pkg, opts.Decorator)
+			if e != nil {
+				msg := fmt.Sprintf("failed to parse pkg with decorator, %s", e)
+				err = cli.NewExitError(msg, 1)
+				return
+			}
+			for k := range objs {
+				exprs = append(exprs, k)
+			}
+		}
+
+		for _, expr := range exprs {
 			_, err = parser.Parse(opts.PkgPath, expr)
 			if err != nil {
 				msg := fmt.Sprintf("failed to parse type expr %s: %s", expr, err)
