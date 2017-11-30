@@ -5,11 +5,11 @@ Parse golang data structure into proto3.
 
 ## Installation
 ```
-go get github.com/wy-z/tproto
+go get github.com/wy-z/tproto/...
 ```
 Or
 ```
-import "github.com/wy-z/tproto/tproto" # see cli/cli.go
+import "github.com/wy-z/tproto/tproto" # see cmd/tproto/cli.go
 ```
 
 ## Usage
