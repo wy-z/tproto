@@ -21,7 +21,7 @@ USAGE:
    tproto [global options] command [command options] [arguments...]
 
 VERSION:
-   1.1.2
+   1.2.0
 
 COMMANDS:
      help, h  Shows a list of commands or help for one command
