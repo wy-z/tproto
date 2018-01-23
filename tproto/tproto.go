@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"github.com/emicklei/proto"
+	"github.com/emicklei/proto-contrib/pkg/protofmt"
 	"github.com/go-openapi/spec"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
@@ -122,7 +123,7 @@ func (t *Parser) RenderProto(protoPkg string) (buf *bytes.Buffer) {
 	}
 
 	buf = bytes.NewBuffer(nil)
-	proto.NewFormatter(buf, "  ").Format(p)
+	protofmt.NewFormatter(buf, "  ").Format(p)
 	return
 }
 
