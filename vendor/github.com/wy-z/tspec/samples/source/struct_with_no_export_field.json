@@ -1,0 +1,6 @@
+{
+	"StructWithNoExportField": {
+		"type": "object",
+		"title": "StructWithNoExportField"
+	}
+}

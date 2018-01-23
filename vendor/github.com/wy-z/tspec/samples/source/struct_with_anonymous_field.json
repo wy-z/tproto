@@ -1,0 +1,59 @@
+{
+	"StructWithAnonymousField": {
+		"type": "object",
+		"title": "StructWithAnonymousField",
+		"properties": {
+			"anonymous_array": {
+				"type": "array",
+				"items": {
+					"$ref": "#/definitions/StructWithAnonymousField_AnonymousArray_Elt"
+				}
+			},
+			"anonymous_map": {
+				"type": "object",
+				"additionalProperties": {
+					"$ref": "#/definitions/StructWithAnonymousField_AnonymousMap_Elt"
+				}
+			},
+			"anonymous_struct": {
+				"$ref": "#/definitions/StructWithAnonymousField_AnonymousStruct"
+			}
+		}
+	},
+	"StructWithAnonymousField_AnonymousArray_Elt": {
+		"type": "object",
+		"title": "StructWithAnonymousField_AnonymousArray_Elt",
+		"properties": {
+			"bool_field": {
+				"type": "boolean"
+			},
+			"string_field": {
+				"type": "string"
+			}
+		}
+	},
+	"StructWithAnonymousField_AnonymousMap_Elt": {
+		"type": "object",
+		"title": "StructWithAnonymousField_AnonymousMap_Elt",
+		"properties": {
+			"bool_field": {
+				"type": "boolean"
+			},
+			"string_field": {
+				"type": "string"
+			}
+		}
+	},
+	"StructWithAnonymousField_AnonymousStruct": {
+		"type": "object",
+		"title": "StructWithAnonymousField_AnonymousStruct",
+		"properties": {
+			"bool_field": {
+				"type": "boolean"
+			},
+			"string_field": {
+				"type": "string"
+			}
+		}
+	}
+}

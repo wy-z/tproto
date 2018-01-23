@@ -1,0 +1,6 @@
+language: go
+go:
+  - stable
+before_script:
+  - go get -u github.com/jteeuwen/go-bindata/...
+script: go generate ./samples && go test -v ./tspec
