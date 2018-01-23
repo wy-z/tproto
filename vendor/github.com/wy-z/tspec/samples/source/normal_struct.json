@@ -1,0 +1,103 @@
+{
+	"BasicTypes": {
+		"type": "object",
+		"title": "BasicTypes",
+		"properties": {
+			"bool_field": {
+				"type": "boolean"
+			},
+			"byte_field": {
+				"type": "string",
+				"format": "byte"
+			},
+			"complex128_field": {
+				"type": "number",
+				"format": "double"
+			},
+			"complex64_field": {
+				"type": "number",
+				"format": "float"
+			},
+			"float32_field": {
+				"type": "number",
+				"format": "float"
+			},
+			"float64_field": {
+				"type": "number",
+				"format": "double"
+			},
+			"int16_field": {
+				"type": "integer",
+				"format": "int32"
+			},
+			"int32_field": {
+				"type": "integer",
+				"format": "int32"
+			},
+			"int64_field": {
+				"type": "integer",
+				"format": "int64"
+			},
+			"int8_field": {
+				"type": "integer",
+				"format": "int32"
+			},
+			"int_field": {
+				"type": "integer",
+				"format": "int64"
+			},
+			"rune_field": {
+				"type": "string",
+				"format": "byte"
+			},
+			"string_field": {
+				"type": "string"
+			},
+			"time_field": {
+				"type": "string",
+				"format": "date-time"
+			},
+			"uint16_field": {
+				"type": "integer",
+				"format": "int32"
+			},
+			"uint32_field": {
+				"type": "integer",
+				"format": "int32"
+			},
+			"uint64_field": {
+				"type": "integer",
+				"format": "int64"
+			},
+			"uint8_field": {
+				"type": "integer",
+				"format": "int32"
+			},
+			"uint_field": {
+				"type": "integer",
+				"format": "int64"
+			},
+			"uintptr_field": {
+				"type": "integer",
+				"format": "int64"
+			}
+		}
+	},
+	"NormalStruct": {
+		"type": "object",
+		"title": "NormalStruct",
+		"properties": {
+			"basic_types": {
+				"$ref": "#/definitions/BasicTypes"
+			},
+			"create": {
+				"type": "string",
+				"format": "date-time"
+			},
+			"number": {
+				"type": "integer",
+				"format": "int64"
+			}
+		}
+	}
+}

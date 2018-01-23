@@ -1,0 +1,11 @@
+{
+	"StructWithCircularReference": {
+		"type": "object",
+		"title": "StructWithCircularReference",
+		"properties": {
+			"circular_reference": {
+				"$ref": "#/definitions/StructWithCircularReference"
+			}
+		}
+	}
+}
