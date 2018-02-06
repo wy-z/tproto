@@ -26,10 +26,9 @@
   version = "v1.2.0"
 
 [[projects]]
-  branch = "master"
   name = "github.com/emicklei/proto-contrib"
   packages = ["pkg/protofmt"]
-  revision = "45fb5125b545af5782a183e5bd64e14d2d60ccbf"
+  revision = "1a0b77302cc833fcf469702a8737b893a91a905c"
 
 [[projects]]
   branch = "master"
@@ -44,10 +43,9 @@
   revision = "36d33bfe519efae5632669801b180bf1a245da3b"
 
 [[projects]]
-  branch = "master"
   name = "github.com/go-openapi/spec"
   packages = ["."]
-  revision = "fa03337d7da5735229ee8f5e9d5d0b996014b7f8"
+  revision = "f3499b5df53897321d6f5e9c22cf19309d41d3bc"
 
 [[projects]]
   branch = "master"
@@ -58,7 +56,11 @@
 [[projects]]
   branch = "master"
   name = "github.com/mailru/easyjson"
-  packages = ["buffer","jlexer","jwriter"]
+  packages = [
+    "buffer",
+    "jlexer",
+    "jwriter"
+  ]
   revision = "32fa128f234d041f196a9f3e0fea5ac9772c08e1"
 
 [[projects]]
@@ -81,7 +83,11 @@
 
 [[projects]]
   name = "github.com/stretchr/testify"
-  packages = ["assert","require","suite"]
+  packages = [
+    "assert",
+    "require",
+    "suite"
+  ]
   revision = "b91bfb9ebec76498946beb6af7c0230c7cc7ba6c"
   version = "v1.2.0"
 
@@ -112,13 +118,32 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
-  packages = ["unix","windows"]
+  packages = [
+    "unix",
+    "windows"
+  ]
   revision = "af50095a40f9041b3b38960738837185c26e9419"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/text"
-  packages = ["collate","collate/build","internal/colltab","internal/gen","internal/tag","internal/triegen","internal/ucd","language","secure/bidirule","transform","unicode/bidi","unicode/cldr","unicode/norm","unicode/rangetable","width"]
+  packages = [
+    "collate",
+    "collate/build",
+    "internal/colltab",
+    "internal/gen",
+    "internal/tag",
+    "internal/triegen",
+    "internal/ucd",
+    "language",
+    "secure/bidirule",
+    "transform",
+    "unicode/bidi",
+    "unicode/cldr",
+    "unicode/norm",
+    "unicode/rangetable",
+    "width"
+  ]
   revision = "e19ae1496984b1c655b8044a65c0300a3c878dd3"
 
 [[projects]]
@@ -130,6 +155,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b415982ca9ccadceeeb843f0f9e39885d12c72e6778f59de94ebf7eb4ca6ca32"
+  inputs-digest = "81826861e559c7134b377fb8590c7682e025911f3ba3f436b8901ff3e7ccc7cf"
   solver-name = "gps-cdcl"
   solver-version = 1

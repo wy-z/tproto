@@ -26,22 +26,22 @@
   version = "1.2.0"
 
 [[constraint]]
-  branch = "master"
   name = "github.com/go-openapi/spec"
+  revision = "f3499b5df53897321d6f5e9c22cf19309d41d3bc"
 
-[[constraint]]
+[[override]]
   name = "github.com/pkg/errors"
   version = "0.8.0"
 
-[[constraint]]
+[[override]]
   name = "github.com/sirupsen/logrus"
   version = "1.0.4"
 
-[[constraint]]
+[[override]]
   name = "github.com/stretchr/testify"
   version = "1.2.0"
 
-[[constraint]]
+[[override]]
   name = "github.com/urfave/cli"
   version = "1.20.0"
 
@@ -50,5 +50,5 @@
   version = "2.2.0"
 
 [[constraint]]
-  branch = "master"
   name = "github.com/emicklei/proto-contrib"
+  revision = "1a0b77302cc833fcf469702a8737b893a91a905c"
