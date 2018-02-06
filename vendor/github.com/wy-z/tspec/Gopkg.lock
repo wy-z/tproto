@@ -20,17 +20,6 @@
   version = "v1.1.0"
 
 [[projects]]
-  name = "github.com/emicklei/proto"
-  packages = ["."]
-  revision = "b22518efa7b8abc36845e661109fb9d9ede9bc2b"
-  version = "v1.2.0"
-
-[[projects]]
-  name = "github.com/emicklei/proto-contrib"
-  packages = ["pkg/protofmt"]
-  revision = "1a0b77302cc833fcf469702a8737b893a91a905c"
-
-[[projects]]
   branch = "master"
   name = "github.com/go-openapi/jsonpointer"
   packages = ["."]
@@ -76,12 +65,6 @@
   version = "v1.0.0"
 
 [[projects]]
-  name = "github.com/sirupsen/logrus"
-  packages = ["."]
-  revision = "d682213848ed68c0a260ca37d6dd5ace8423f5ba"
-  version = "v1.0.4"
-
-[[projects]]
   name = "github.com/stretchr/testify"
   packages = [
     "assert",
@@ -98,31 +81,10 @@
   version = "v1.20.0"
 
 [[projects]]
-  name = "github.com/wy-z/tspec"
-  packages = ["tspec"]
-  revision = "5be8b3032e472edad8e3a4446720ee6abc9fc71d"
-  version = "2.2.2"
-
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/crypto"
-  packages = ["ssh/terminal"]
-  revision = "d94f6bc902c2970500950e88ab1a54a0c26bec48"
-
-[[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = ["idna"]
   revision = "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec"
-
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/sys"
-  packages = [
-    "unix",
-    "windows"
-  ]
-  revision = "af50095a40f9041b3b38960738837185c26e9419"
 
 [[projects]]
   branch = "master"
@@ -155,6 +117,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "93ba76338e44caa5111a006e214be70e088bbd2c48f6e6ba031836051e1e468d"
+  inputs-digest = "a0d1fa6083b988599521178ae559f5f01fd7eeaaf16dabff1752680b2476d6f3"
   solver-name = "gps-cdcl"
   solver-version = 1
